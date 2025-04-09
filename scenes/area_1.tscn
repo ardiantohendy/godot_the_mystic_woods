@@ -1,4 +1,4 @@
-[gd_scene load_steps=50 format=3 uid="uid://doadlw77pv33e"]
+[gd_scene load_steps=51 format=3 uid="uid://doadlw77pv33e"]
 
 [ext_resource type="Texture2D" uid="uid://bgqs1xxpi3843" path="res://assets/tilesets/decor_8x8.png" id="1_jbksv"]
 [ext_resource type="Texture2D" uid="uid://vwde0whwbw6a" path="res://assets/tilesets/decor_16x16.png" id="2_7gjbd"]
@@ -24,6 +24,7 @@
 [ext_resource type="Texture2D" uid="uid://demak3qliuy65" path="res://assets/tilesets/water4.png" id="22_nla1x"]
 [ext_resource type="Texture2D" uid="uid://cmnycnupgio3i" path="res://assets/tilesets/water5.png" id="23_82x7x"]
 [ext_resource type="PackedScene" uid="uid://ckbgnfnhhnter" path="res://scenes/player.tscn" id="24_7gjbd"]
+[ext_resource type="PackedScene" uid="uid://crt7idkltt43a" path="res://scenes/slime.tscn" id="25_at6xv"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_gj3g6"]
 texture = ExtResource("1_jbksv")
@@ -858,3 +859,6 @@ layer_4/name = "House"
 position = Vector2(241, 14)
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
+
+[node name="Slime" parent="." instance=ExtResource("25_at6xv")]
+position = Vector2(62, 210)
