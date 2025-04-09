@@ -10,6 +10,7 @@ func _ready() -> void:
 
 func _physics_process(delta: float) -> void:
 	player_movement(delta)
+	
 
 func player_movement(delta: float) -> void:
 	if Input.is_action_pressed("ui_right"):

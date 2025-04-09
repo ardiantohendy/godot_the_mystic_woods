@@ -364,7 +364,7 @@ animations = [{
 }],
 "loop": false,
 "name": &"side_attack",
-"speed": 8.0
+"speed": 3.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -420,6 +420,6 @@ script = ExtResource("1_g2els")
 sprite_frames = SubResource("SpriteFrames_lxlsd")
 animation = &"side_attack"
 frame = 3
-frame_progress = 0.262582
+frame_progress = 1.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
