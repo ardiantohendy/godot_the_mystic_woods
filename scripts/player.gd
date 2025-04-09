@@ -6,7 +6,7 @@ const SPEED = 100
 var current_dir = "none"
 
 func _ready() -> void:
-	animated_sprite_2d.play("side_idle")
+	animated_sprite_2d.play("front_idle")
 
 func _physics_process(delta: float) -> void:
 	player_movement(delta)
