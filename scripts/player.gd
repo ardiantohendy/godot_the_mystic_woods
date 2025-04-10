@@ -36,14 +36,20 @@ const SPEED = 100
 var current_dir = "none"
 
 var can_attack = true
+var is_attacking = false
 
 func _ready() -> void:
 	animated_sprite_2d.play("front_idle")
 
 func _physics_process(delta: float) -> void:
 	player_movement(delta)
+	player_attack(delta)
 
 func player_movement(delta: float) -> void:
+	if is_attacking:
+		velocity = Vector2.ZERO
+		return  # Jangan jalan atau ubah animasi kalau sedang menyerang
+
 	if Input.is_action_pressed("ui_right"):
 		current_dir = "right"
 		play_anim(1)
@@ -66,14 +72,13 @@ func player_movement(delta: float) -> void:
 		velocity.y = -SPEED
 	else:
 		play_anim(0)
-		velocity.x = 0
-		velocity.y = 0
-		
+		velocity = Vector2.ZERO
+
 	move_and_slide()
 
 func play_anim(movement):
 	var dir = current_dir
-
+	
 	if dir == "right":
 		animated_sprite_2d.flip_h = false
 		if movement == 1:
@@ -102,30 +107,62 @@ func play_anim(movement):
 		elif movement == 0:
 			animated_sprite_2d.play("back_idle")
 
-
-func _input(event):
-	if event.is_action_pressed("attack") and can_attack:
+func player_attack(delta: float) -> void:
+	if Input.is_action_just_pressed("attack") and can_attack and not is_attacking:
 		attack()
 
 func attack():
-	var dir = current_dir
+	is_attacking = true
 	can_attack = false
 	velocity = Vector2.ZERO
-	if dir == "right":
-		animated_sprite_2d.play("side_attack")
-	elif dir == "up":
-		animated_sprite_2d.play("back_attack")
-	elif dir == "down":
-		animated_sprite_2d.play("front_attack")
-	else:
-		animated_sprite_2d.flip_h = true
-		animated_sprite_2d.play("side_attack")
-		
+	
+	match current_dir:
+		"right":
+			animated_sprite_2d.flip_h = false
+			animated_sprite_2d.play("side_attack")
+		"left":
+			animated_sprite_2d.flip_h = true
+			animated_sprite_2d.play("side_attack")
+		"up":
+			animated_sprite_2d.play("back_attack")
+		"down":
+			animated_sprite_2d.play("front_attack")
+		_:
+			animated_sprite_2d.play("side_attack")
+
 	attack_area.monitoring = true
-	
-	await animated_sprite_2d.animation_finished
-	
+
+	await animated_sprite_2d.animation_finished  # Tunggu animasi selesai
+
 	attack_area.monitoring = false
+	is_attacking = false
 	can_attack = true
 	
 	
+
+#func _input(event):
+	#if event.is_action_pressed("attack") and can_attack:
+		#attack()
+#
+#func attack():
+	#var dir = current_dir
+	#can_attack = false
+	#velocity = Vector2.ZERO
+	#if dir == "right":
+		#animated_sprite_2d.play("side_attack")
+	#elif dir == "up":
+		#animated_sprite_2d.play("back_attack")
+	#elif dir == "down":
+		#animated_sprite_2d.play("front_attack")
+	#else:
+		#animated_sprite_2d.flip_h = true
+		#animated_sprite_2d.play("side_attack")
+		#
+	#attack_area.monitoring = true
+	#
+	#await animated_sprite_2d.animation_finished
+	#
+	#attack_area.monitoring = false
+	#can_attack = true
+	#
+	#
