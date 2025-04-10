@@ -71,3 +71,8 @@ func walk_animation(direction):
 			animated_sprite.play("front_walk")
 		else:
 			animated_sprite.play("back_walk")
+			
+#ENEMY COMBAT SYSTEM
+
+func enemy():
+	pass

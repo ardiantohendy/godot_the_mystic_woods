@@ -1,4 +1,4 @@
-[gd_scene load_steps=56 format=3 uid="uid://ckbgnfnhhnter"]
+[gd_scene load_steps=57 format=3 uid="uid://ckbgnfnhhnter"]
 
 [ext_resource type="Texture2D" uid="uid://4ybqdxrit51q" path="res://assets/characters/player.png" id="1_3vyb7"]
 [ext_resource type="Script" uid="uid://vf2mpwesjrdn" path="res://scripts/player.gd" id="1_g2els"]
@@ -416,6 +416,9 @@ animations = [{
 [sub_resource type="CircleShape2D" id="CircleShape2D_g2els"]
 radius = 4.0
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_qhqgy"]
+radius = 14.0
+
 [node name="Player" type="CharacterBody2D"]
 collision_layer = 3
 script = ExtResource("1_g2els")
@@ -423,11 +426,21 @@ script = ExtResource("1_g2els")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 y_sort_enabled = true
 sprite_frames = SubResource("SpriteFrames_lxlsd")
-animation = &"front_idle"
-frame = 5
-frame_progress = 1.0
+animation = &"back_idle"
 offset = Vector2(0, -15)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 y_sort_enabled = true
 shape = SubResource("CircleShape2D_g2els")
+
+[node name="AttackArea" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AttackArea"]
+position = Vector2(0, -7)
+shape = SubResource("CircleShape2D_qhqgy")
+
+[node name="EnemyAttackCooldown" type="Timer" parent="."]
+
+[connection signal="body_entered" from="AttackArea" to="." method="_on_player_hit_box_body_entered"]
+[connection signal="body_exited" from="AttackArea" to="." method="_on_player_hit_box_body_exited"]
+[connection signal="timeout" from="EnemyAttackCooldown" to="." method="_on_enemy_attack_cooldown_timeout"]
