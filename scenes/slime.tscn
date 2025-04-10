@@ -534,7 +534,7 @@ radius = 58.0345
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_p2gj0"]
 
-[node name="Slime" type="CharacterBody2D"]
+[node name="Slime" type="CharacterBody2D" groups=["enemy"]]
 motion_mode = 1
 script = ExtResource("1_p2gj0")
 

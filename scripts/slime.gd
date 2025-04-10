@@ -7,6 +7,7 @@ var player_chased = false
 var player = null
 var patrol_points: Array[Vector2] = []
 var current_point = 0
+var health = 100
 
 #patrolling by default
 func _on_ready() -> void:
@@ -74,5 +75,13 @@ func walk_animation(direction):
 			
 #ENEMY COMBAT SYSTEM
 
-func enemy():
-	pass
+func take_damage(amount):
+	health -= amount
+	if health <= 0:
+		print("you killed an enemy!")
+		die()
+	else:
+		print("Slime Health " + str(health))
+
+func die():
+	queue_free()
