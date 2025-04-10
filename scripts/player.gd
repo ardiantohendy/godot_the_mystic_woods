@@ -19,7 +19,7 @@ func player_movement(delta: float) -> void:
 	if is_attacking:
 		velocity = Vector2.ZERO
 		return  # Jangan jalan atau ubah animasi kalau sedang menyerang
-
+	
 	if Input.is_action_pressed("ui_right"):
 		current_dir = "right"
 		play_anim(1)
@@ -89,26 +89,33 @@ func attack():
 	velocity = Vector2.ZERO
 	
 	if current_dir == "right":
+		attack_area.position = Vector2(20, 0)
 		animated_sprite_2d.flip_h = false
 		animated_sprite_2d.play("side_attack")
 	elif current_dir == "left":
+		attack_area.position = Vector2(-20, 0)
 		animated_sprite_2d.flip_h = true
 		animated_sprite_2d.play("side_attack")
 	elif  current_dir == "up":
+		attack_area.position = Vector2(0, -20)
 		animated_sprite_2d.flip_h = false
 		animated_sprite_2d.play("back_attack")
 	elif current_dir == "down":
+		attack_area.position = Vector2(0, 20)
 		animated_sprite_2d.flip_h = false
 		animated_sprite_2d.play("front_attack")
 	
 	attack_area.monitoring = true
-
+	
+	await get_tree().physics_frame
+	
+	for body in attack_area.get_overlapping_bodies():
+		if body.has_method("take_damage"):
+			body.take_damage(50)
+			
 	await animated_sprite_2d.animation_finished  # Tunggu animasi selesai
 
 	attack_area.monitoring = false
 	is_attacking = false
 	can_attack = true
 	
-func _on_attack_area_body_entered(body: Node2D) -> void:
-	if body.is_in_group("enemy"):
-		body.take_damage(50)

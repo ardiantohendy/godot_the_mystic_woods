@@ -8,6 +8,7 @@ var player = null
 var patrol_points: Array[Vector2] = []
 var current_point = 0
 var health = 100
+#var get_attack = false
 
 #patrolling by default
 func _on_ready() -> void:
@@ -26,6 +27,10 @@ func _on_area_2d_body_exited(body: Node2D) -> void:
 	SPEED = 20
 	
 func _physics_process(delta: float) -> void:
+	#if get_attack:
+		#attacked_anim()
+		#return
+	
 	if player_chased:
 		chasing()
 	else:
@@ -82,6 +87,15 @@ func take_damage(amount):
 		die()
 	else:
 		print("Slime Health " + str(health))
+	
+	
+#func attacked_anim():
+	#if get_attack == true:
+		#if health != 0:
+			#animated_sprite.play("side_get_attack")
+		#else:
+			#animated_sprite.play("dead")
+			
 
 func die():
 	queue_free()

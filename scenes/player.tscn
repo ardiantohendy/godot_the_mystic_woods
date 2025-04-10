@@ -426,7 +426,7 @@ script = ExtResource("1_g2els")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 y_sort_enabled = true
 sprite_frames = SubResource("SpriteFrames_lxlsd")
-animation = &"side_attack"
+animation = &"front_attack"
 offset = Vector2(0, -15)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -436,7 +436,7 @@ shape = SubResource("CircleShape2D_g2els")
 [node name="AttackArea" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AttackArea"]
-position = Vector2(0, -7)
+position = Vector2(0, -6)
 shape = SubResource("CircleShape2D_qhqgy")
 
 [connection signal="body_entered" from="AttackArea" to="." method="_on_attack_area_body_entered"]

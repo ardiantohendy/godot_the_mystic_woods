@@ -856,9 +856,15 @@ layer_3/tile_data = PackedInt32Array(917521, 23, 5, 786454, 524311, 6, 786456, 5
 layer_4/name = "House"
 
 [node name="Player" parent="." instance=ExtResource("24_7gjbd")]
-position = Vector2(241, 14)
+position = Vector2(171, 218)
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
 
 [node name="Slime" parent="." instance=ExtResource("25_at6xv")]
 position = Vector2(62, 210)
+
+[node name="Slime2" parent="." instance=ExtResource("25_at6xv")]
+position = Vector2(386, 221)
+
+[node name="Slime3" parent="." instance=ExtResource("25_at6xv")]
+position = Vector2(370, 104)

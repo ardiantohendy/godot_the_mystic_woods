@@ -541,8 +541,7 @@ script = ExtResource("1_p2gj0")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(0, -5)
 sprite_frames = SubResource("SpriteFrames_qywsl")
-animation = &"side_idle"
-frame_progress = 0.507092
+animation = &"side_get_attack"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_vn3xq")
@@ -554,8 +553,6 @@ collision_mask = 2
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 shape = SubResource("CircleShape2D_371uh")
 
-[node name="Timer" type="Timer" parent="."]
-
 [node name="PatrolPath" type="Node2D" parent="."]
 
 [node name="Point1" type="Marker2D" parent="PatrolPath"]
@@ -564,9 +561,9 @@ position = Vector2(47, 0)
 [node name="Point2" type="Marker2D" parent="PatrolPath"]
 position = Vector2(-47, 0)
 
-[node name="SlimeHitBox" type="Area2D" parent="."]
+[node name="AttackArea" type="Area2D" parent="."]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="SlimeHitBox"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AttackArea"]
 position = Vector2(0, -3)
 shape = SubResource("CircleShape2D_p2gj0")
 
