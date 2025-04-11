@@ -7,6 +7,8 @@ const SPEED = 100
 var current_dir = "none"
 var can_attack = true
 var is_attacking = false
+var player_health = 100
+var is_get_attack = false
 
 func _ready() -> void:
 	animated_sprite_2d.play("front_idle")
@@ -120,3 +122,17 @@ func attack():
 	is_attacking = false
 	can_attack = true
 	
+#func take_damage(amount):
+	#is_get_attack = true
+	#player_health = player_health - amount
+
+func take_damage(amount):
+	player_health -= amount
+	print("Player kena hit! Sisa HP: ", player_health)
+
+	if player_health <= 0:
+		die()
+
+func die():
+	print("Player mati!")  # nanti bisa ganti jadi animasi
+	queue_free()  # atau reload scene

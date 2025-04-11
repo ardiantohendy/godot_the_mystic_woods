@@ -533,6 +533,7 @@ radius = 4.0
 radius = 58.0345
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_p2gj0"]
+radius = 15.0333
 
 [node name="Slime" type="CharacterBody2D" groups=["enemy"]]
 motion_mode = 1

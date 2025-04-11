@@ -1,6 +1,8 @@
 extends CharacterBody2D
 
 @onready var animated_sprite = $AnimatedSprite2D
+@onready var attack_area: Area2D = $AttackArea
+
 
 var SPEED = 20
 var player_chased = false
@@ -9,9 +11,13 @@ var patrol_points: Array[Vector2] = []
 var current_point = 0
 var health = 100
 var get_attack = false
+var can_attack = true
+var attack_cooldown = 1.5
 
 #patrolling by default
 func _on_ready() -> void:
+	$AttackArea.monitoring = true
+	$AttackArea.monitorable = true
 	for marker in $PatrolPath.get_children():
 		if marker is Marker2D:
 			patrol_points.append(marker.global_position)
@@ -41,6 +47,7 @@ func _physics_process(delta: float) -> void:
 	else:
 		patroling()
 	
+	check_attack()
 	move_and_slide()
 	
 func patroling():
@@ -111,3 +118,32 @@ func die_anim():
 		await animated_sprite.animation_finished
 		get_attack = false
 		queue_free()
+
+#ENEMY ATTACK PLAYER
+
+func check_attack():
+	if not can_attack or not is_instance_valid(player):
+		return
+
+	var bodies = $AttackArea.get_overlapping_bodies()
+	for body in bodies:
+		if body.is_in_group("player"): # pastikan nama node player kamu adalah "Player"
+			attack(body)
+			break
+	
+
+func attack(player_node):
+	can_attack = false
+
+	#if animated_sprite.has_animation("side_attack"):
+		#animated_sprite.play("side_attack")
+
+	# Kasih damage langsung, tanpa nunggu animasi selesai
+	if player_node.has_method("take_damage"):
+		player_node.take_damage(20)
+
+	# Timer untuk cooldown serangan
+	var timer = get_tree().create_timer(attack_cooldown)
+	timer.timeout.connect(func(): can_attack = true)
+		
+	
