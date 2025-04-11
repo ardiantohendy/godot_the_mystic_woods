@@ -8,7 +8,6 @@ var current_dir = "none"
 var can_attack = true
 var is_attacking = false
 var player_health = 100
-var is_get_attack = false
 
 func _ready() -> void:
 	animated_sprite_2d.play("front_idle")
@@ -99,11 +98,11 @@ func attack():
 		animated_sprite_2d.flip_h = true
 		animated_sprite_2d.play("side_attack")
 	elif  current_dir == "up":
-		attack_area.position = Vector2(0, -20)
+		attack_area.position = Vector2(0, -10)
 		animated_sprite_2d.flip_h = false
 		animated_sprite_2d.play("back_attack")
 	elif current_dir == "down":
-		attack_area.position = Vector2(0, 20)
+		attack_area.position = Vector2(0, 10)
 		animated_sprite_2d.flip_h = false
 		animated_sprite_2d.play("front_attack")
 	
@@ -114,7 +113,7 @@ func attack():
 	for body in attack_area.get_overlapping_bodies():
 		if body.has_method("take_damage"):
 			var direction_to_enemy = (body.global_position - global_position).normalized()
-			body.take_damage(50, direction_to_enemy)
+			body.take_damage(5, direction_to_enemy)
 			
 	await animated_sprite_2d.animation_finished  # Tunggu animasi selesai
 
@@ -122,17 +121,15 @@ func attack():
 	is_attacking = false
 	can_attack = true
 	
-#func take_damage(amount):
-	#is_get_attack = true
-	#player_health = player_health - amount
+#PLAYER GET ATTACK
 
-func take_damage(amount):
-	player_health -= amount
-	print("Player kena hit! Sisa HP: ", player_health)
-
-	if player_health <= 0:
-		die()
-
-func die():
-	print("Player mati!")  # nanti bisa ganti jadi animasi
-	queue_free()  # atau reload scene
+#func take_damage_from_enemy(amount):
+	#player_health -= amount
+	#print("Player kena hit! Sisa HP: ", player_health)
+	#
+	#if player_health <= 0:
+		#die()
+#
+#func die():
+	#print("Player mati!")  # nanti bisa ganti jadi animasi
+	#queue_free()  # atau reload scene
