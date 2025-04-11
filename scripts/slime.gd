@@ -86,21 +86,12 @@ func walk_animation(direction):
 func take_damage(amount):
 	get_attack = true
 	health -= amount
-	
-	
-	#if health <= 0:
-		#print("you killed an enemy!")
-		
+
 func attacked_anim():
 	if get_attack:
 		animated_sprite.play("side_get_attack")
 		await animated_sprite.animation_finished
 		get_attack = false
-		
-		#if health <= 0:
-			#animated_sprite.play("dead")
-			#await animated_sprite.animation_finished
-			#get_attack = false
 			
 func die_anim():
 	if get_attack:
