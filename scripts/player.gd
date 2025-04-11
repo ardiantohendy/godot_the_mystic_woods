@@ -111,7 +111,8 @@ func attack():
 	
 	for body in attack_area.get_overlapping_bodies():
 		if body.has_method("take_damage"):
-			body.take_damage(50)
+			var direction_to_enemy = (body.global_position - global_position).normalized()
+			body.take_damage(50, direction_to_enemy)
 			
 	await animated_sprite_2d.animation_finished  # Tunggu animasi selesai
 

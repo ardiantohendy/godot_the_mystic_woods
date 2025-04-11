@@ -32,6 +32,8 @@ func _physics_process(delta: float) -> void:
 			die_anim()
 		else:
 			attacked_anim()
+		
+		move_and_slide()
 		return
 		
 	if player_chased:
@@ -83,14 +85,24 @@ func walk_animation(direction):
 			
 #ENEMY COMBAT SYSTEM
 
-func take_damage(amount):
+func take_damage(amount, from_direction: Vector2):
 	get_attack = true
 	health -= amount
+	
+	# Efek knockback
+	var knockback_force = 50
+	velocity = from_direction.normalized() * knockback_force
 
 func attacked_anim():
 	if get_attack:
 		animated_sprite.play("side_get_attack")
+		
+		# Tunggu sebentar biar knockback kelihatan
+		await get_tree().create_timer(0.2).timeout
+		
+		velocity = Vector2.ZERO  # Hentikan setelah mental
 		await animated_sprite.animation_finished
+		
 		get_attack = false
 			
 func die_anim():
