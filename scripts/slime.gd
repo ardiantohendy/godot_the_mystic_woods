@@ -74,12 +74,12 @@ func chasing():
 		velocity = Vector2.ZERO 
 		
 		if abs(direction.x) > abs(direction.y):
-			animated_sprite.play("side_idle")
+			animated_sprite.play("side_attack")
 		else:
 			if direction.y > 0:
-				animated_sprite.play("front_idle")
+				animated_sprite.play("front_attack")
 			else:
-				animated_sprite.play("back_idle")
+				animated_sprite.play("back_attack")
 
 func walk_animation(direction):
 	if direction.length() == 0:

@@ -287,7 +287,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_v5wyi")
 }],
-"loop": true,
+"loop": false,
 "name": &"back_attack",
 "speed": 8.0
 }, {
@@ -387,7 +387,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_3tc40")
 }],
-"loop": true,
+"loop": false,
 "name": &"front_attack",
 "speed": 8.0
 }, {
@@ -467,7 +467,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_4yj7m")
 }],
-"loop": true,
+"loop": false,
 "name": &"side_attack",
 "speed": 8.0
 }, {
@@ -542,7 +542,7 @@ script = ExtResource("1_p2gj0")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(0, -5)
 sprite_frames = SubResource("SpriteFrames_qywsl")
-animation = &"back_get_attack"
+animation = &"side_attack"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_vn3xq")
