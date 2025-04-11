@@ -8,7 +8,7 @@ var player = null
 var patrol_points: Array[Vector2] = []
 var current_point = 0
 var health = 100
-#var get_attack = false
+var get_attack = false
 
 #patrolling by default
 func _on_ready() -> void:
@@ -27,10 +27,13 @@ func _on_area_2d_body_exited(body: Node2D) -> void:
 	SPEED = 20
 	
 func _physics_process(delta: float) -> void:
-	#if get_attack:
-		#attacked_anim()
-		#return
-	
+	if get_attack:
+		if health <= 0:
+			die_anim()
+		else:
+			attacked_anim()
+		return
+		
 	if player_chased:
 		chasing()
 	else:
@@ -81,21 +84,27 @@ func walk_animation(direction):
 #ENEMY COMBAT SYSTEM
 
 func take_damage(amount):
+	get_attack = true
 	health -= amount
-	if health <= 0:
-		print("you killed an enemy!")
-		die()
-	else:
-		print("Slime Health " + str(health))
 	
 	
-#func attacked_anim():
-	#if get_attack == true:
-		#if health != 0:
-			#animated_sprite.play("side_get_attack")
-		#else:
+	#if health <= 0:
+		#print("you killed an enemy!")
+		
+func attacked_anim():
+	if get_attack:
+		animated_sprite.play("side_get_attack")
+		await animated_sprite.animation_finished
+		get_attack = false
+		
+		#if health <= 0:
 			#animated_sprite.play("dead")
+			#await animated_sprite.animation_finished
+			#get_attack = false
 			
-
-func die():
-	queue_free()
+func die_anim():
+	if get_attack:
+		animated_sprite.play("dead")
+		await animated_sprite.animation_finished
+		get_attack = false
+		queue_free()
