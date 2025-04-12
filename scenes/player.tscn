@@ -1,7 +1,13 @@
-[gd_scene load_steps=57 format=3 uid="uid://ckbgnfnhhnter"]
+[gd_scene load_steps=59 format=3 uid="uid://ckbgnfnhhnter"]
 
 [ext_resource type="Texture2D" uid="uid://4ybqdxrit51q" path="res://assets/characters/player.png" id="1_3vyb7"]
 [ext_resource type="Script" uid="uid://vf2mpwesjrdn" path="res://scripts/player.gd" id="1_g2els"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_g2els"]
+bg_color = Color(0.0722893, 0.0614013, 0.0102505, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qhqgy"]
+bg_color = Color(0.89, 0.1157, 0.128605, 1)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_g2els"]
 atlas = ExtResource("1_3vyb7")
@@ -423,6 +429,16 @@ radius = 14.0
 collision_layer = 3
 script = ExtResource("1_g2els")
 
+[node name="HealthBar" type="ProgressBar" parent="."]
+offset_left = -15.0
+offset_top = -26.0
+offset_right = 15.0
+offset_bottom = -23.0
+theme_override_styles/background = SubResource("StyleBoxFlat_g2els")
+theme_override_styles/fill = SubResource("StyleBoxFlat_qhqgy")
+value = 50.0
+show_percentage = false
+
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 y_sort_enabled = true
 sprite_frames = SubResource("SpriteFrames_lxlsd")
@@ -439,6 +455,6 @@ shape = SubResource("CircleShape2D_g2els")
 position = Vector2(0, -6)
 shape = SubResource("CircleShape2D_qhqgy")
 
-[connection signal="body_entered" from="AttackArea" to="." method="_on_attack_area_body_entered"]
 [connection signal="body_entered" from="AttackArea" to="." method="_on_player_hit_box_body_entered"]
+[connection signal="body_entered" from="AttackArea" to="." method="_on_attack_area_body_entered"]
 [connection signal="body_exited" from="AttackArea" to="." method="_on_player_hit_box_body_exited"]

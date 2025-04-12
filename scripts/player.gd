@@ -2,6 +2,7 @@ extends CharacterBody2D
 
 @onready var animated_sprite_2d: AnimatedSprite2D = $AnimatedSprite2D
 @onready var attack_area: Area2D = $AttackArea
+@onready var health_bar: ProgressBar = $HealthBar
 
 const SPEED = 100
 var current_dir = "none"
@@ -11,6 +12,10 @@ var player_health = 100
 
 func _ready() -> void:
 	animated_sprite_2d.play("front_idle")
+	health_bar.value = player_health
+
+func _process(delta: float) -> void:
+	health_bar.value = player_health
 
 func _physics_process(delta: float) -> void:
 	player_movement(delta)
