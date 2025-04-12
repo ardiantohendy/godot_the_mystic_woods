@@ -4,10 +4,10 @@
 [ext_resource type="Script" uid="uid://vf2mpwesjrdn" path="res://scripts/player.gd" id="1_g2els"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_g2els"]
-bg_color = Color(0.0722893, 0.0614013, 0.0102505, 1)
+bg_color = Color(0.180005, 0.180005, 0.180005, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qhqgy"]
-bg_color = Color(0.89, 0.1157, 0.128605, 1)
+bg_color = Color(0.984314, 0.203922, 0.25098, 1)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_g2els"]
 atlas = ExtResource("1_3vyb7")
@@ -430,10 +430,10 @@ collision_layer = 3
 script = ExtResource("1_g2els")
 
 [node name="HealthBar" type="ProgressBar" parent="."]
-offset_left = -15.0
-offset_top = -26.0
-offset_right = 15.0
-offset_bottom = -23.0
+offset_left = -139.0
+offset_top = -77.0
+offset_right = -79.0
+offset_bottom = -72.0
 theme_override_styles/background = SubResource("StyleBoxFlat_g2els")
 theme_override_styles/fill = SubResource("StyleBoxFlat_qhqgy")
 value = 50.0

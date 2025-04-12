@@ -2,6 +2,7 @@ extends CharacterBody2D
 
 @onready var animated_sprite = $AnimatedSprite2D
 @onready var attack_area: Area2D = $AttackArea
+@onready var health_bar: ProgressBar = $HealthBar
 
 
 var SPEED = 20
@@ -16,6 +17,8 @@ var can_attack = true
 
 #patrolling by default
 func _on_ready() -> void:
+	health_bar.value = health 
+	
 	$AttackArea.monitoring = true
 	$AttackArea.monitorable = true
 	for marker in $PatrolPath.get_children():
@@ -31,6 +34,9 @@ func _on_area_2d_body_exited(body: Node2D) -> void:
 	player = null
 	player_chased = false
 	SPEED = 20
+	
+func _process(delta: float) -> void:
+	health_bar.value = health
 	
 func _physics_process(delta: float) -> void:
 	if get_attack:
@@ -150,7 +156,7 @@ func attack(player_node):
 	await get_tree().create_timer(0.875).timeout
 	
 	if player_node.has_method("take_damage_from_enemy") and animated_sprite.animation == "side_attack":
-		player_node.take_damage_from_enemy(5)
+		player_node.take_damage_from_enemy(20)
 		print("Get attack")
 	
 	# Tunggu delay cooldown sebelum bisa menyerang lagi
