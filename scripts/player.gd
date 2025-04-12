@@ -2,7 +2,7 @@ extends CharacterBody2D
 
 @onready var animated_sprite_2d: AnimatedSprite2D = $AnimatedSprite2D
 @onready var attack_area: Area2D = $AttackArea
-@onready var health_bar: ProgressBar = $HealthBar
+@onready var ui_node = get_tree().get_current_scene().get_node("UI")
 
 const SPEED = 100
 var current_dir = "none"
@@ -10,12 +10,9 @@ var can_attack = true
 var is_attacking = false
 var player_health = 100
 
+
 func _ready() -> void:
 	animated_sprite_2d.play("front_idle")
-	health_bar.value = player_health
-
-func _process(delta: float) -> void:
-	health_bar.value = player_health
 
 func _physics_process(delta: float) -> void:
 	player_movement(delta)
@@ -24,7 +21,7 @@ func _physics_process(delta: float) -> void:
 func player_movement(delta: float) -> void:
 	if is_attacking:
 		velocity = Vector2.ZERO
-		return  # Jangan jalan atau ubah animasi kalau sedang menyerang
+		return 
 	
 	if Input.is_action_pressed("ui_right"):
 		current_dir = "right"
@@ -120,7 +117,7 @@ func attack():
 			var direction_to_enemy = (body.global_position - global_position).normalized()
 			body.take_damage(50, direction_to_enemy)
 			
-	await animated_sprite_2d.animation_finished  # Tunggu animasi selesai
+	await animated_sprite_2d.animation_finished  
 
 	attack_area.monitoring = false
 	is_attacking = false
@@ -130,10 +127,10 @@ func attack():
 
 func take_damage_from_enemy(amount):
 	player_health -= amount
+	ui_node.update_health(player_health)
 	
 	if player_health <= 0:
 		die()
 
 func die():
-	print("Player mati!")  # nanti bisa ganti jadi animasi
-	queue_free()  # atau reload scene
+	get_tree().reload_current_scene() 

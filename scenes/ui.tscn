@@ -1,22 +1,108 @@
-[gd_scene load_steps=4 format=3 uid="uid://but1d3f80esrh"]
+[gd_scene load_steps=13 format=3 uid="uid://but1d3f80esrh"]
 
 [ext_resource type="Script" uid="uid://bxrmsirefhnrq" path="res://scripts/ui.gd" id="1_nt7q6"]
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xlq6p"]
-bg_color = Color(0.151276, 0.151276, 0.151276, 1)
+[ext_resource type="Texture2D" uid="uid://4ybqdxrit51q" path="res://assets/characters/player.png" id="2_x4jx1"]
+[ext_resource type="FontFile" uid="uid://du8vitlrqw2ie" path="res://assets/fonts/PixelOperator8-Bold.ttf" id="2_yev5y"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_nt7q6"]
-bg_color = Color(0.92549, 0.0941176, 0.105882, 1)
+bg_color = Color(0.180005, 0.180005, 0.180005, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_x4jx1"]
+bg_color = Color(0.984314, 0.203922, 0.25098, 1)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yev5y"]
+atlas = ExtResource("2_x4jx1")
+region = Rect2(0, 48, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gdt2y"]
+atlas = ExtResource("2_x4jx1")
+region = Rect2(48, 48, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wm3ai"]
+atlas = ExtResource("2_x4jx1")
+region = Rect2(96, 48, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8dubc"]
+atlas = ExtResource("2_x4jx1")
+region = Rect2(144, 48, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_p7vwb"]
+atlas = ExtResource("2_x4jx1")
+region = Rect2(192, 48, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ktti3"]
+atlas = ExtResource("2_x4jx1")
+region = Rect2(240, 48, 48, 48)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_cgfq5"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yev5y")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gdt2y")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wm3ai")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8dubc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_p7vwb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ktti3")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
 
 [node name="UI" type="CanvasLayer"]
 script = ExtResource("1_nt7q6")
 
-[node name="ProgressBar2" type="ProgressBar" parent="."]
-offset_left = 1.0
-offset_top = 1.0
-offset_right = 51.0
-offset_bottom = 6.0
-theme_override_styles/background = SubResource("StyleBoxFlat_xlq6p")
-theme_override_styles/fill = SubResource("StyleBoxFlat_nt7q6")
+[node name="HealthBar" type="ProgressBar" parent="."]
+offset_left = 147.0
+offset_top = 78.0
+offset_right = 343.0
+offset_bottom = 94.0
+theme_override_styles/background = SubResource("StyleBoxFlat_nt7q6")
+theme_override_styles/fill = SubResource("StyleBoxFlat_x4jx1")
 value = 100.0
 show_percentage = false
+
+[node name="Player" type="Label" parent="."]
+offset_left = 146.0
+offset_top = 28.0
+offset_right = 238.0
+offset_bottom = 51.0
+theme_override_fonts/font = ExtResource("2_yev5y")
+text = "Player"
+vertical_alignment = 1
+
+[node name="Health" type="Label" parent="."]
+offset_left = 146.0
+offset_top = 51.0
+offset_right = 248.0
+offset_bottom = 74.0
+theme_override_fonts/font = ExtResource("2_yev5y")
+text = "Health:"
+vertical_alignment = 1
+
+[node name="PanelContainer" type="PanelContainer" parent="."]
+clip_contents = true
+offset_left = 34.0
+offset_top = 16.0
+offset_right = 137.0
+offset_bottom = 106.0
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="PanelContainer"]
+position = Vector2(49, 18)
+scale = Vector2(6, 6)
+sprite_frames = SubResource("SpriteFrames_cgfq5")
+autoplay = "default"
+frame_progress = 0.200828
+
+[connection signal="changed" from="HealthBar" to="." method="_on_health_bar_changed"]

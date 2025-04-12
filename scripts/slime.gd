@@ -76,7 +76,6 @@ func chasing():
 		walk_animation(direction)
 		
 	else :
-		#SEHARUSNYA DI SINI GW KASIH ATTACK SOALNYA INI PAS SLIME BERHENTI DI DEKET PLAYER
 		velocity = Vector2.ZERO
 		check_attack()
 
@@ -104,7 +103,7 @@ func take_damage(amount, from_direction: Vector2):
 	get_attack = true
 	health -= amount
 	
-	# Efek knockback
+	
 	var knockback_force = 50
 	velocity = from_direction.normalized() * knockback_force
 
@@ -120,10 +119,9 @@ func attacked_anim():
 			else:
 				animated_sprite.play("back_get_attack")
 		
-		# Tunggu sebentar biar knockback kelihatan
 		await get_tree().create_timer(0.2).timeout
 		
-		velocity = Vector2.ZERO  # Hentikan setelah mental
+		velocity = Vector2.ZERO 
 		await animated_sprite.animation_finished
 		
 		get_attack = false
@@ -145,7 +143,7 @@ func check_attack():
 	var bodies = $AttackArea.get_overlapping_bodies()
 	
 	for body in bodies:
-		if body.is_in_group("player"): # pastikan nama node player kamu adalah "Player"
+		if body.is_in_group("player"): 
 			attack(body)
 			
 func attack(player_node):
@@ -157,9 +155,8 @@ func attack(player_node):
 	
 	if player_node.has_method("take_damage_from_enemy") and animated_sprite.animation == "side_attack":
 		player_node.take_damage_from_enemy(20)
-		print("Get attack")
-	
-	# Tunggu delay cooldown sebelum bisa menyerang lagi
+		
+
 	
 	can_attack = true
 		
