@@ -1,4 +1,4 @@
-[gd_scene load_steps=51 format=3 uid="uid://doadlw77pv33e"]
+[gd_scene load_steps=54 format=3 uid="uid://doadlw77pv33e"]
 
 [ext_resource type="Texture2D" uid="uid://bgqs1xxpi3843" path="res://assets/tilesets/decor_8x8.png" id="1_jbksv"]
 [ext_resource type="Texture2D" uid="uid://vwde0whwbw6a" path="res://assets/tilesets/decor_16x16.png" id="2_7gjbd"]
@@ -25,6 +25,7 @@
 [ext_resource type="Texture2D" uid="uid://cmnycnupgio3i" path="res://assets/tilesets/water5.png" id="23_82x7x"]
 [ext_resource type="PackedScene" uid="uid://ckbgnfnhhnter" path="res://scenes/player.tscn" id="24_7gjbd"]
 [ext_resource type="PackedScene" uid="uid://crt7idkltt43a" path="res://scenes/slime.tscn" id="25_at6xv"]
+[ext_resource type="PackedScene" uid="uid://but1d3f80esrh" path="res://scenes/ui.tscn" id="26_0e81h"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_gj3g6"]
 texture = ExtResource("1_jbksv")
@@ -837,6 +838,12 @@ sources/21 = SubResource("TileSetAtlasSource_saq8o")
 sources/22 = SubResource("TileSetAtlasSource_6icku")
 sources/23 = SubResource("TileSetAtlasSource_q00qa")
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0e81h"]
+bg_color = Color(0.151276, 0.151276, 0.151276, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_x1qdt"]
+bg_color = Color(0.92549, 0.0941176, 0.105882, 1)
+
 [node name="Area1" type="Node2D"]
 y_sort_enabled = true
 
@@ -859,6 +866,18 @@ layer_4/name = "House"
 position = Vector2(171, 218)
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
+
+[node name="UI" parent="Player/Camera2D" instance=ExtResource("26_0e81h")]
+
+[node name="ProgressBar2" type="ProgressBar" parent="Player/Camera2D/UI"]
+offset_left = 1.0
+offset_top = 1.0
+offset_right = 51.0
+offset_bottom = 6.0
+theme_override_styles/background = SubResource("StyleBoxFlat_0e81h")
+theme_override_styles/fill = SubResource("StyleBoxFlat_x1qdt")
+value = 100.0
+show_percentage = false
 
 [node name="Slime" parent="." instance=ExtResource("25_at6xv")]
 position = Vector2(62, 210)
