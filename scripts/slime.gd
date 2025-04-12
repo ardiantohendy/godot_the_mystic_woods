@@ -12,7 +12,7 @@ var current_point = 0
 var health = 100
 var get_attack = false
 var can_attack = true
-var attack_cooldown = 1
+
 
 #patrolling by default
 func _on_ready() -> void:
@@ -68,6 +68,7 @@ func chasing():
 	if distance > 15:
 		velocity = direction * SPEED
 		walk_animation(direction)
+		
 	else :
 		#SEHARUSNYA DI SINI GW KASIH ATTACK SOALNYA INI PAS SLIME BERHENTI DI DEKET PLAYER
 		velocity = Vector2.ZERO
@@ -136,23 +137,24 @@ func check_attack():
 		return
 
 	var bodies = $AttackArea.get_overlapping_bodies()
+	
 	for body in bodies:
 		if body.is_in_group("player"): # pastikan nama node player kamu adalah "Player"
 			attack(body)
 			
-
 func attack(player_node):
 	can_attack = false
-	animated_sprite.play("side_attack")
-
-	await animated_sprite.animation_finished
-
-	# Pastikan player masih valid dan di area setelah animasi selesai
-	if player_node and player_node.is_inside_tree() and player_node.has_method("take_damage_from_enemy"):
+	var anim_name = "side_attack"
+	
+	animated_sprite.play(anim_name)
+	await get_tree().create_timer(0.875).timeout
+	
+	if player_node.has_method("take_damage_from_enemy") and animated_sprite.animation == "side_attack":
 		player_node.take_damage_from_enemy(5)
 		print("Get attack")
-		
-
+	
+	# Tunggu delay cooldown sebelum bisa menyerang lagi
+	
 	can_attack = true
 		
 	
