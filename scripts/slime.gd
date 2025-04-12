@@ -11,8 +11,8 @@ var patrol_points: Array[Vector2] = []
 var current_point = 0
 var health = 100
 var get_attack = false
-#var can_attack = true
-#var attack_cooldown = 1.5
+var can_attack = true
+var attack_cooldown = 1
 
 #patrolling by default
 func _on_ready() -> void:
@@ -38,7 +38,7 @@ func _physics_process(delta: float) -> void:
 			die_anim()
 		else:
 			attacked_anim()
-		
+			
 		move_and_slide()
 		return
 		
@@ -47,7 +47,6 @@ func _physics_process(delta: float) -> void:
 	else:
 		patroling()
 	
-	#check_attack()
 	move_and_slide()
 	
 func patroling():
@@ -71,15 +70,9 @@ func chasing():
 		walk_animation(direction)
 	else :
 		#SEHARUSNYA DI SINI GW KASIH ATTACK SOALNYA INI PAS SLIME BERHENTI DI DEKET PLAYER
-		velocity = Vector2.ZERO 
-		
-		if abs(direction.x) > abs(direction.y):
-			animated_sprite.play("side_attack")
-		else:
-			if direction.y > 0:
-				animated_sprite.play("front_attack")
-			else:
-				animated_sprite.play("back_attack")
+		velocity = Vector2.ZERO
+		check_attack()
+
 
 func walk_animation(direction):
 	if direction.length() == 0:
@@ -127,6 +120,7 @@ func attacked_anim():
 		await animated_sprite.animation_finished
 		
 		get_attack = false
+		
 			
 func die_anim():
 	if get_attack:
@@ -137,28 +131,28 @@ func die_anim():
 
 #ENEMY ATTACK PLAYER
 
-#func check_attack():
-	#if not can_attack or not is_instance_valid(player):
-		#return
-#
-	#var bodies = $AttackArea.get_overlapping_bodies()
-	#for body in bodies:
-		#if body.is_in_group("player"): # pastikan nama node player kamu adalah "Player"
-			#attack(body)
-			#break
-#
-#func attack(player_node):
-	#can_attack = false
-#
-	##if animated_sprite.has_animation("side_attack"):
-		##animated_sprite.play("side_attack")
-#
-	## Kasih damage langsung, tanpa nunggu animasi selesai
-	#if player_node.has_method("take_damage"):
-		#player_node.take_damage(20)
-#
-	## Timer untuk cooldown serangan
-	#var timer = get_tree().create_timer(attack_cooldown)
-	#timer.timeout.connect(func(): can_attack = true)
-		#
+func check_attack():
+	if not can_attack:
+		return
+
+	var bodies = $AttackArea.get_overlapping_bodies()
+	for body in bodies:
+		if body.is_in_group("player"): # pastikan nama node player kamu adalah "Player"
+			attack(body)
+			
+
+func attack(player_node):
+	can_attack = false
+	animated_sprite.play("side_attack")
+
+	await animated_sprite.animation_finished
+
+	# Pastikan player masih valid dan di area setelah animasi selesai
+	if player_node and player_node.is_inside_tree() and player_node.has_method("take_damage_from_enemy"):
+		player_node.take_damage_from_enemy(5)
+		print("Get attack")
+		
+
+	can_attack = true
+		
 	
