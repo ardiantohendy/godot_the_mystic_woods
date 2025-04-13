@@ -28,7 +28,7 @@
 [ext_resource type="PackedScene" uid="uid://but1d3f80esrh" path="res://scenes/ui.tscn" id="26_0e81h"]
 
 [sub_resource type="GDScript" id="GDScript_0e81h"]
-script/source = "extends Node2D
+script/source = "
 "
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_gj3g6"]
@@ -883,9 +883,5 @@ position = Vector2(386, 221)
 position = Vector2(370, 104)
 
 [node name="UI" parent="." instance=ExtResource("26_0e81h")]
-
-[node name="Camera2D" type="Camera2D" parent="."]
-visible = false
-position = Vector2(242, 3)
 
 [connection signal="ready" from="." to="." method="_on_ready"]

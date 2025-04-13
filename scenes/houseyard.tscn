@@ -1,4 +1,4 @@
-[gd_scene load_steps=53 format=3 uid="uid://lu205kwbygao"]
+[gd_scene load_steps=51 format=3 uid="uid://lu205kwbygao"]
 
 [ext_resource type="Texture2D" uid="uid://bgqs1xxpi3843" path="res://assets/tilesets/decor_8x8.png" id="1_v81qh"]
 [ext_resource type="Texture2D" uid="uid://vwde0whwbw6a" path="res://assets/tilesets/decor_16x16.png" id="2_rdg8d"]
@@ -24,8 +24,12 @@
 [ext_resource type="Texture2D" uid="uid://demak3qliuy65" path="res://assets/tilesets/water4.png" id="22_2begr"]
 [ext_resource type="Texture2D" uid="uid://cmnycnupgio3i" path="res://assets/tilesets/water5.png" id="23_pb15i"]
 [ext_resource type="PackedScene" uid="uid://ckbgnfnhhnter" path="res://scenes/player.tscn" id="24_gkxf7"]
-[ext_resource type="PackedScene" uid="uid://e1upq6pg36v4" path="res://scenes/next_area.tscn" id="25_rdg8d"]
-[ext_resource type="Script" uid="uid://ctuaxwo2fa6yo" path="res://scripts/next_area.gd" id="26_obny5"]
+
+[sub_resource type="GDScript" id="GDScript_obny5"]
+script/source = "extends Node2D
+
+# Called when the node enters the scene tree for the first time.
+"
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_v81qh"]
 texture = ExtResource("1_v81qh")
@@ -838,12 +842,10 @@ sources/21 = SubResource("TileSetAtlasSource_vggqb")
 sources/22 = SubResource("TileSetAtlasSource_uvxug")
 sources/23 = SubResource("TileSetAtlasSource_26juq")
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_obny5"]
-size = Vector2(94, 6)
-
 [node name="HouseYard" type="Node2D"]
 y_sort_enabled = true
 position = Vector2(0, 1)
+script = SubResource("GDScript_obny5")
 
 [node name="TileMap" type="TileMap" parent="."]
 y_sort_enabled = true
@@ -873,12 +875,3 @@ limit_right = 499
 limit_bottom = 290
 drag_horizontal_enabled = true
 drag_vertical_enabled = true
-
-[node name="NextArea" parent="." instance=ExtResource("25_rdg8d")]
-script = ExtResource("26_obny5")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="NextArea"]
-position = Vector2(258, 294)
-shape = SubResource("RectangleShape2D_obny5")
-
-[connection signal="body_entered" from="NextArea" to="NextArea" method="_on_body_entered"]

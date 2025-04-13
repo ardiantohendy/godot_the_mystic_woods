@@ -19,6 +19,7 @@ func _physics_process(delta: float) -> void:
 	player_attack(delta)
 
 func player_movement(delta: float) -> void:
+	print(self.position)
 	if is_attacking:
 		velocity = Vector2.ZERO
 		return 
