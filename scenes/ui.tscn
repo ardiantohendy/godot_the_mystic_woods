@@ -103,6 +103,6 @@ position = Vector2(49, 18)
 scale = Vector2(6, 6)
 sprite_frames = SubResource("SpriteFrames_cgfq5")
 autoplay = "default"
-frame_progress = 0.200828
+frame_progress = 0.590097
 
 [connection signal="changed" from="HealthBar" to="." method="_on_health_bar_changed"]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=50 format=3 uid="uid://lu205kwbygao"]
+[gd_scene load_steps=53 format=3 uid="uid://lu205kwbygao"]
 
 [ext_resource type="Texture2D" uid="uid://bgqs1xxpi3843" path="res://assets/tilesets/decor_8x8.png" id="1_v81qh"]
 [ext_resource type="Texture2D" uid="uid://vwde0whwbw6a" path="res://assets/tilesets/decor_16x16.png" id="2_rdg8d"]
@@ -24,6 +24,8 @@
 [ext_resource type="Texture2D" uid="uid://demak3qliuy65" path="res://assets/tilesets/water4.png" id="22_2begr"]
 [ext_resource type="Texture2D" uid="uid://cmnycnupgio3i" path="res://assets/tilesets/water5.png" id="23_pb15i"]
 [ext_resource type="PackedScene" uid="uid://ckbgnfnhhnter" path="res://scenes/player.tscn" id="24_gkxf7"]
+[ext_resource type="PackedScene" uid="uid://e1upq6pg36v4" path="res://scenes/next_area.tscn" id="25_rdg8d"]
+[ext_resource type="Script" uid="uid://ctuaxwo2fa6yo" path="res://scripts/next_area.gd" id="26_obny5"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_v81qh"]
 texture = ExtResource("1_v81qh")
@@ -621,28 +623,28 @@ texture = ExtResource("18_uqmjt")
 3:3/0 = 0
 0:4/0 = 0
 1:4/0 = 0
-1:4/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+1:4/0/physics_layer_0/polygon_0/points = PackedVector2Array(-1.43887, -2.87774, 8, -5.03604, 8, 8, -6.1152, 8)
 2:4/0 = 0
-2:4/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+2:4/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -5.75548, -8, 8, 8, 8, 8, -5.93534)
 3:4/0 = 0
-3:4/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+3:4/0/physics_layer_0/polygon_0/points = PackedVector2Array(1.43887, -2.87774, -8, -5.03604, -8, 8, 6.1152, 8)
 4:4/0 = 0
 5:4/0 = 0
 0:5/0 = 0
 1:5/0 = 0
-1:5/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+1:5/0/physics_layer_0/polygon_0/points = PackedVector2Array(-5.75548, -8, 8, -8, 8, 8, -5.93534, 8)
 2:5/0 = 0
 3:5/0 = 0
-3:5/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+3:5/0/physics_layer_0/polygon_0/points = PackedVector2Array(5.75548, -8, -8, -8, -8, 8, 5.93534, 8)
 4:5/0 = 0
 5:5/0 = 0
 0:6/0 = 0
 1:6/0 = 0
-1:6/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+1:6/0/physics_layer_0/polygon_0/points = PackedVector2Array(-1.43887, 2.87774, 8, 5.03604, 8, -8, -6.1152, -8)
 2:6/0 = 0
-2:6/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+2:6/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, 5.75548, -8, -8, 8, -8, 8, 5.93534)
 3:6/0 = 0
-3:6/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+3:6/0/physics_layer_0/polygon_0/points = PackedVector2Array(6.29506, 3.59718, 6.47491, -8, -8, -8, -8, 6.65477, 2.69788, 6.47491)
 4:6/0 = 0
 5:6/0 = 0
 0:7/0 = 0
@@ -836,6 +838,9 @@ sources/21 = SubResource("TileSetAtlasSource_vggqb")
 sources/22 = SubResource("TileSetAtlasSource_uvxug")
 sources/23 = SubResource("TileSetAtlasSource_26juq")
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_obny5"]
+size = Vector2(94, 6)
+
 [node name="HouseYard" type="Node2D"]
 y_sort_enabled = true
 position = Vector2(0, 1)
@@ -860,4 +865,20 @@ layer_4/tile_data = PackedInt32Array(131087, 14, 3, 196623, 14, 4, 262159, 65550
 [node name="Player" parent="." instance=ExtResource("24_gkxf7")]
 position = Vector2(255, 122)
 
-[node name="Camera2D2" type="Camera2D" parent="Player"]
+[node name="Camera" type="Camera2D" parent="Player"]
+zoom = Vector2(4, 4)
+limit_left = 0
+limit_top = -12
+limit_right = 499
+limit_bottom = 290
+drag_horizontal_enabled = true
+drag_vertical_enabled = true
+
+[node name="NextArea" parent="." instance=ExtResource("25_rdg8d")]
+script = ExtResource("26_obny5")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="NextArea"]
+position = Vector2(258, 294)
+shape = SubResource("RectangleShape2D_obny5")
+
+[connection signal="body_entered" from="NextArea" to="NextArea" method="_on_body_entered"]
