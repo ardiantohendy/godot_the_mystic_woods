@@ -11,6 +11,5 @@ func update_health(max_health: int, current_health: int):
 	if health_bar:
 		health_bar.max_value = max_health
 		health_bar.value = current_health
-		print("DITEMUKAN BRO")
 	else:
 		print("❗ Health bar belum ditemukan!")

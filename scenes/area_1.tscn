@@ -1,6 +1,7 @@
-[gd_scene load_steps=53 format=3 uid="uid://doadlw77pv33e"]
+[gd_scene load_steps=54 format=3 uid="uid://doadlw77pv33e"]
 
 [ext_resource type="Texture2D" uid="uid://bgqs1xxpi3843" path="res://assets/tilesets/decor_8x8.png" id="1_jbksv"]
+[ext_resource type="PackedScene" uid="uid://5jdhupmh15ua" path="res://scenes/area_portal.tscn" id="1_x1qdt"]
 [ext_resource type="Texture2D" uid="uid://vwde0whwbw6a" path="res://assets/tilesets/decor_16x16.png" id="2_7gjbd"]
 [ext_resource type="Texture2D" uid="uid://b4lhp2jsuduw4" path="res://assets/tilesets/water6.png" id="3_at6xv"]
 [ext_resource type="Texture2D" uid="uid://dbutk41q21lhy" path="res://assets/tilesets/water-sheet.png" id="4_0e81h"]
@@ -883,5 +884,13 @@ position = Vector2(386, 221)
 position = Vector2(370, 104)
 
 [node name="UI" parent="." instance=ExtResource("26_0e81h")]
+
+[node name="AreaPortal" parent="." instance=ExtResource("1_x1qdt")]
+position = Vector2(216, -9)
+target_scene_path = "res://scenes/houseyard.tscn"
+target_spawn_name = "SpawnFromArea1"
+
+[node name="SpawnFromHouseyard" type="Marker2D" parent="."]
+position = Vector2(242, 5)
 
 [connection signal="ready" from="." to="." method="_on_ready"]

@@ -25,7 +25,7 @@
 [ext_resource type="Texture2D" uid="uid://cmnycnupgio3i" path="res://assets/tilesets/water5.png" id="23_pb15i"]
 [ext_resource type="PackedScene" uid="uid://ckbgnfnhhnter" path="res://scenes/player.tscn" id="24_gkxf7"]
 [ext_resource type="PackedScene" uid="uid://but1d3f80esrh" path="res://scenes/ui.tscn" id="25_rdg8d"]
-[ext_resource type="PackedScene" uid="uid://crt7idkltt43a" path="res://scenes/slime.tscn" id="26_obny5"]
+[ext_resource type="PackedScene" uid="uid://5jdhupmh15ua" path="res://scenes/area_portal.tscn" id="26_obny5"]
 
 [sub_resource type="GDScript" id="GDScript_obny5"]
 script/source = "extends Node2D
@@ -880,5 +880,10 @@ drag_vertical_enabled = true
 
 [node name="UI" parent="." instance=ExtResource("25_rdg8d")]
 
-[node name="Slime" parent="." instance=ExtResource("26_obny5")]
-position = Vector2(108, 199)
+[node name="AreaPortal" parent="." instance=ExtResource("26_obny5")]
+position = Vector2(230, 291)
+target_scene_path = "res://scenes/area_1.tscn"
+target_spawn_name = "SpawnFromHouseyard"
+
+[node name="SpawnFromArea1" type="Marker2D" parent="."]
+position = Vector2(255, 285)

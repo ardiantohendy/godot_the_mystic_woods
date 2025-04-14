@@ -11,7 +11,12 @@ var is_attacking = false
 
 func _ready() -> void:
 	animated_sprite_2d.play("front_idle")
-	
+	var spawn_name = GameState.target_spawn_name
+	var spawn_node = get_tree().current_scene.get_node_or_null(spawn_name)
+	if spawn_node:
+		print(spawn_node)
+		print(spawn_name)
+		global_position = spawn_node.global_position
 
 func _physics_process(delta: float) -> void:
 	player_movement(delta)
@@ -134,4 +139,4 @@ func take_damage_from_enemy(amount):
 
 func die():
 	GameState.player_health = 150
-	get_tree().reload_current_scene() 
+	get_tree().reload_current_scene()
