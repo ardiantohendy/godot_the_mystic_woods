@@ -103,5 +103,19 @@ sprite_frames = SubResource("SpriteFrames_cgfq5")
 autoplay = "default"
 frame_progress = 0.590097
 
+[node name="AreaName" type="Label" parent="."]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -148.0
+offset_top = 12.0
+offset_right = -10.0
+offset_bottom = 35.0
+grow_horizontal = 0
+theme_override_fonts/font = ExtResource("2_yev5y")
+text = "AREA NAME"
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [connection signal="ready" from="." to="." method="_on_ready"]
 [connection signal="changed" from="HealthBar" to="." method="_on_health_bar_changed"]

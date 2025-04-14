@@ -9,6 +9,7 @@ var current_dir = "none"
 var can_attack = true
 var is_attacking = false
 
+
 func _ready() -> void:
 	animated_sprite_2d.play("front_idle")
 	var spawn_name = GameState.target_spawn_name
@@ -133,7 +134,6 @@ func attack():
 func take_damage_from_enemy(amount):
 	GameState.player_health -= amount
 	ui.update_health(GameState.player_max_health ,GameState.player_health)
-	print(GameState.player_health)
 	if GameState.player_health <= 0:
 		die()
 
