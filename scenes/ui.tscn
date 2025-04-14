@@ -70,8 +70,6 @@ offset_right = 343.0
 offset_bottom = 94.0
 theme_override_styles/background = SubResource("StyleBoxFlat_nt7q6")
 theme_override_styles/fill = SubResource("StyleBoxFlat_x4jx1")
-value = 100.0
-show_percentage = false
 
 [node name="Player" type="Label" parent="."]
 offset_left = 146.0
@@ -105,4 +103,5 @@ sprite_frames = SubResource("SpriteFrames_cgfq5")
 autoplay = "default"
 frame_progress = 0.590097
 
+[connection signal="ready" from="." to="." method="_on_ready"]
 [connection signal="changed" from="HealthBar" to="." method="_on_health_bar_changed"]

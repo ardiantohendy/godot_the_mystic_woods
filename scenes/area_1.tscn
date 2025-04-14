@@ -884,8 +884,4 @@ position = Vector2(370, 104)
 
 [node name="UI" parent="." instance=ExtResource("26_0e81h")]
 
-[node name="Camera2D" type="Camera2D" parent="."]
-visible = false
-position = Vector2(242, 3)
-
 [connection signal="ready" from="." to="." method="_on_ready"]

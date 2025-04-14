@@ -2,24 +2,23 @@ extends CharacterBody2D
 
 @onready var animated_sprite_2d: AnimatedSprite2D = $AnimatedSprite2D
 @onready var attack_area: Area2D = $AttackArea
-@onready var ui_node = get_tree().get_current_scene().get_node("UI")
+@onready var ui: CanvasLayer = $"../UI"
 
 const SPEED = 100
 var current_dir = "none"
 var can_attack = true
 var is_attacking = false
-var player_health = 100
-
 
 func _ready() -> void:
 	animated_sprite_2d.play("front_idle")
+	
 
 func _physics_process(delta: float) -> void:
 	player_movement(delta)
 	player_attack(delta)
 
 func player_movement(delta: float) -> void:
-	print(self.position)
+	#print(self.position)
 	if is_attacking:
 		velocity = Vector2.ZERO
 		return 
@@ -127,11 +126,12 @@ func attack():
 #PLAYER GET ATTACK
 
 func take_damage_from_enemy(amount):
-	player_health -= amount
-	ui_node.update_health(player_health)
-	
-	if player_health <= 0:
+	GameState.player_health -= amount
+	ui.update_health(GameState.player_max_health ,GameState.player_health)
+	print(GameState.player_health)
+	if GameState.player_health <= 0:
 		die()
 
 func die():
+	GameState.player_health = 150
 	get_tree().reload_current_scene() 
