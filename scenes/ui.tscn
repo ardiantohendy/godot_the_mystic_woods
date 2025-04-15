@@ -70,6 +70,7 @@ offset_right = 343.0
 offset_bottom = 94.0
 theme_override_styles/background = SubResource("StyleBoxFlat_nt7q6")
 theme_override_styles/fill = SubResource("StyleBoxFlat_x4jx1")
+show_percentage = false
 
 [node name="Player" type="Label" parent="."]
 offset_left = 146.0

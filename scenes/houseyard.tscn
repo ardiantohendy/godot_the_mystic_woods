@@ -867,7 +867,7 @@ layer_4/name = "House"
 layer_4/tile_data = PackedInt32Array(131087, 14, 3, 196623, 14, 4, 262159, 65550, 4, 327695, 65550, 4, 131088, 14, 1, 196624, 14, 1, 262160, 131086, 4, 327696, 65552, 0, 131089, 14, 1, 196625, 14, 1, 262161, 131086, 4, 327697, 131086, 4, 131090, 14, 3, 196626, 14, 4, 262162, 131086, 4, 327698, 131086, 4, 131091, 14, 1, 196627, 14, 1, 262163, 131086, 4, 327699, 131086, 4, 131092, 14, 1, 196628, 14, 1, 262164, 131086, 4, 327700, 65552, 0, 131093, 14, 3, 196629, 14, 4, 262165, 196622, 4, 327701, 196622, 4, 196630, 65550, 2, 262166, 65550, 4, 131095, 327694, 0, 196631, 327694, 1, 262167, 327694, 4, 393231, 65550, 5, 393232, 131086, 5, 393233, 196622, 5, 393234, 15, 0, 393235, 65550, 5, 393236, 131086, 5, 393237, 196622, 5, 327702, 65550, 5, 327703, 327694, 4, 65551, 14, 4, 65552, 14, 1, 65553, 14, 1, 65554, 14, 4, 65555, 14, 1, 65556, 14, 1, 65557, 14, 4, 15, 14, 3, 21, 14, 3, 18, 14, 3, 131094, 65550, 0)
 
 [node name="Player" parent="." instance=ExtResource("24_gkxf7")]
-position = Vector2(255, 122)
+position = Vector2(257, 163)
 
 [node name="Camera" type="Camera2D" parent="Player"]
 zoom = Vector2(4, 4)
@@ -887,3 +887,11 @@ target_spawn_name = "SpawnFromHouseyard"
 
 [node name="SpawnFromArea1" type="Marker2D" parent="."]
 position = Vector2(255, 285)
+
+[node name="AreaPortal2" parent="." instance=ExtResource("26_obny5")]
+position = Vector2(230, 87)
+target_scene_path = "res://scenes/house.tscn"
+target_spawn_name = "SpawnFromOutside"
+
+[node name="SpawnFromHouse" type="Marker2D" parent="."]
+position = Vector2(256, 106)
