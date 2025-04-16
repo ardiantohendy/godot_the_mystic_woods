@@ -884,6 +884,7 @@ drag_vertical_enabled = true
 position = Vector2(230, 291)
 target_scene_path = "res://scenes/area_1.tscn"
 target_spawn_name = "SpawnFromHouseyard"
+area_name = "Area 1"
 
 [node name="SpawnFromArea1" type="Marker2D" parent="."]
 position = Vector2(255, 285)
@@ -892,6 +893,7 @@ position = Vector2(255, 285)
 position = Vector2(230, 87)
 target_scene_path = "res://scenes/house.tscn"
 target_spawn_name = "SpawnFromOutside"
+area_name = "House"
 
 [node name="SpawnFromHouse" type="Marker2D" parent="."]
 position = Vector2(256, 106)

@@ -19,5 +19,5 @@ func update_health(max_health: int, current_health: int):
 
 #FOR AREA NAME
 func update_current_area_name():
-	area_name.text = "GG BANGET (INI BUAT AREA)"
+	area_name.text = GameState.area_name
 	

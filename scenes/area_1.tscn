@@ -889,7 +889,7 @@ position = Vector2(370, 104)
 position = Vector2(216, -9)
 target_scene_path = "res://scenes/houseyard.tscn"
 target_spawn_name = "SpawnFromArea1"
-area_name = ""
+area_name = "Houseyard"
 
 [node name="SpawnFromHouseyard" type="Marker2D" parent="."]
 position = Vector2(242, 5)
