@@ -2,7 +2,7 @@ extends Area2D
 
 @export var target_scene_path: String
 @export var target_spawn_name: String = "SpawnPoint"
-@export var area_name: String = "AreaName"
+@export var area_name: String = ""
 
 func _on_body_entered(body: Node2D) -> void:
 	if body.name == "Player":

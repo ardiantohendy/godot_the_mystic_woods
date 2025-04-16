@@ -18,9 +18,9 @@ var can_attack = true
 #patrolling by default
 func _on_ready() -> void:
 	health_bar.value = health 
-	
 	$AttackArea.monitoring = true
 	$AttackArea.monitorable = true
+	
 	for marker in $PatrolPath.get_children():
 		if marker is Marker2D:
 			patrol_points.append(marker.global_position)
@@ -156,8 +156,6 @@ func attack(player_node):
 	if player_node.has_method("take_damage_from_enemy") and animated_sprite.animation == "side_attack":
 		player_node.take_damage_from_enemy(20)
 		
-
-	
 	can_attack = true
 		
 	

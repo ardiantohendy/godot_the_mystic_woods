@@ -542,6 +542,7 @@ bg_color = Color(0.180005, 0.180005, 0.180005, 1)
 bg_color = Color(0.984314, 0.203922, 0.25098, 1)
 
 [node name="Slime" type="CharacterBody2D" groups=["enemy"]]
+z_index = 2
 motion_mode = 1
 script = ExtResource("1_p2gj0")
 

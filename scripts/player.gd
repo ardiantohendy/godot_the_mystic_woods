@@ -15,8 +15,6 @@ func _ready() -> void:
 	var spawn_name = GameState.target_spawn_name
 	var spawn_node = get_tree().current_scene.get_node_or_null(spawn_name)
 	if spawn_node:
-		print(spawn_node)
-		print(spawn_name)
 		global_position = spawn_node.global_position
 
 func _physics_process(delta: float) -> void:
@@ -24,7 +22,6 @@ func _physics_process(delta: float) -> void:
 	player_attack(delta)
 
 func player_movement(delta: float) -> void:
-	#print(self.position)
 	if is_attacking:
 		velocity = Vector2.ZERO
 		return 

@@ -414,19 +414,20 @@ animations = [{
 }]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_g2els"]
-radius = 4.0
+radius = 2.23607
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_qhqgy"]
 radius = 14.0
 
 [node name="Player" type="CharacterBody2D" groups=["player"]]
+z_index = 2
 collision_layer = 3
 script = ExtResource("1_g2els")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 y_sort_enabled = true
 sprite_frames = SubResource("SpriteFrames_lxlsd")
-animation = &"front_attack"
+animation = &"back_idle"
 offset = Vector2(0, -15)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
