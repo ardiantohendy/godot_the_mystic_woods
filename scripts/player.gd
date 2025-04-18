@@ -136,4 +136,4 @@ func take_damage_from_enemy(amount):
 
 func die():
 	GameState.player_health = 150
-	get_tree().reload_current_scene()
+	get_tree().reload_current_scene()	
